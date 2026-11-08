@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>METZ | Designer Fragrances</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        moss: { 800: '#2A2F1F', 900: '#1E2316', 700: '#3D432D' },
+                        ivory: { 50: '#FBF9F5', 100: '#F4EFE6', 200: '#E8DFD1' },
+                        gold: { 500: '#C4A47C', 600: '#A98963' },
+                        sage: '#7A7B69'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-ivory-50 text-moss-900 font-sans antialiased selection:bg-gold-500 selection:text-white">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-40 bg-ivory-100/90 backdrop-blur-md border-b border-ivory-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full border border-moss-800 flex items-center justify-center font-serif text-xl font-bold">M</div>
+                <div>
+                    <h1 class="font-serif text-2xl tracking-widest font-bold text-moss-900">METZ</h1>
+                    <p class="text-[10px] tracking-[0.2em] uppercase text-sage">Designer Fragrances</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleCart()" class="relative bg-moss-800 text-ivory-50 px-4 py-2 rounded-full text-sm font-medium flex items-center space-x-2 hover:bg-moss-700 transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                    <span>Bolsa</span>
+                    <span id="cart-badge" class="bg-gold-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-moss-900 text-ivory-50 py-20 px-4 text-center overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#C4A47C_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-3xl mx-auto relative z-10">
+            <span class="text-gold-500 text-xs tracking-[0.3em] uppercase font-medium">Colección Exclusiva USA</span>
+            <h2 class="font-serif text-4xl sm:text-6xl font-bold mt-3 mb-6">La Esencia de la Distinción</h2>
+            <p class="text-ivory-200 text-sm sm:text-base font-light mb-8 max-w-xl mx-auto">Explora nuestro catálogo curado de alta perfumería internacional con notas sofisticadas y elegancia atemporal.</p>
+            <a href="#catalogo" class="inline-block bg-gold-500 text-moss-900 font-semibold px-8 py-3 rounded-full hover:bg-gold-600 transition tracking-wider text-sm uppercase">Ver Catálogo</a>
+        </div>
+    </section>
+
+    <!-- MAIN CONTAINER -->
+    <main id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- FILTERS & SEARCH -->
+        <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4 border-b border-ivory-200 pb-6">
+            <div class="flex flex-wrap gap-2 justify-center md:justify-start" id="filter-buttons">
+                <button onclick="filterCategory('all')" class="filter-btn active px-5 py-2 rounded-full text-xs tracking-wider uppercase bg-moss-800 text-ivory-50 transition">Todos</button>
+                <button onclick="filterCategory('mujer')" class="filter-btn px-5 py-2 rounded-full text-xs tracking-wider uppercase bg-ivory-200 text-moss-900 hover:bg-moss-800 hover:text-ivory-50 transition">Mujer</button>
+                <button onclick="filterCategory('hombre')" class="filter-btn px-5 py-2 rounded-full text-xs tracking-wider uppercase bg-ivory-200 text-moss-900 hover:bg-moss-800 hover:text-ivory-50 transition">Hombre</button>
+                <button onclick="filterCategory('neutral')" class="filter-btn px-5 py-2 rounded-full text-xs tracking-wider uppercase bg-ivory-200 text-moss-900 hover:bg-moss-800 hover:text-ivory-50 transition">Unisex / Neutral</button>
+            </div>
+            <div class="w-full md:w-72">
+                <input type="text" id="search-input" oninput="searchProducts()" placeholder="Buscar perfume o marca..." class="w-full px-4 py-2 rounded-full bg-ivory-100 border border-ivory-200 text-sm focus:outline-none focus:border-gold-500">
+            </div>
+        </div>
+
+        <!-- PRODUCT GRID -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Cargado dinámicamente mediante JS -->
+        </div>
+    </main>
+
+    <!-- CART DRAWER -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="toggleCart()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-ivory-50 shadow-2xl flex flex-col">
+                <div class="p-6 bg-moss-900 text-ivory-50 flex items-center justify-between">
+                    <h3 class="font-serif text-xl tracking-wider">Tu Bolsa de Compras</h3>
+                    <button onclick="toggleCart()" class="text-ivory-200 hover:text-white">&times;</button>
+                </div>
+                <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <!-- Items -->
+                </div>
+                <div class="p-6 bg-ivory-100 border-t border-ivory-200">
+                    <div class="flex justify-between mb-4 font-serif text-lg font-bold">
+                        <span>Total:</span>
+                        <span id="cart-total">$0.00</span>
+                    </div>
+                    <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-700 text-white py-3 rounded-full font-medium hover:bg-emerald-800 transition flex items-center justify-center space-x-2">
+                        <span>Enviar Pedido por WhatsApp</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-moss-900 text-ivory-200 py-12 mt-20 border-t border-moss-800">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="font-serif text-2xl tracking-widest text-ivory-50 mb-2">METZ PERFUMES</h2>
+            <p class="text-xs tracking-widest text-sage uppercase">Elegancia y Exclusividad</p>
+            <p class="text-xs text-sage mt-6">&copy; 2026 METZ Perfumes. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT LOGIC -->
+    <script>
+        let products = [];
+        let cart = [];
+
+        async function loadProducts() {
+            try {
+                const response = await fetch('productos.json');
+                products = await response.json();
+                displayProducts(products);
+            } catch (error) {
+                console.error("Error cargando productos:", error);
+            }
+        }
+
+        function displayProductCard(product) {
+            return `
+                <div class="bg-white rounded-xl overflow-hidden border border-ivory-200 shadow-sm hover:shadow-md transition flex flex-col">
+                    <div class="relative h-64 bg-ivory-100 overflow-hidden">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-moss-900/80 text-ivory-50 text-[10px] uppercase tracking-wider px-3 py-1 rounded-full">${product.category}</span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <p class="text-xs text-sage uppercase tracking-widest mb-1">${product.brand}</p>
+                            <h3 class="font-serif text-xl font-bold text-moss-900 mb-1">${product.name}</h3>
+                            <p class="text-xs text-sage mb-4">${product.size} &bull; ${product.type}</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-ivory-100">
+                            <span class="font-serif text-xl font-bold text-moss-900">$${product.price.toFixed(2)}</span>
+                            <button onclick="addToCart('${product.id}')" class="bg-moss-800 text-ivory-50 px-4 py-2 rounded-full text-xs uppercase tracking-wider hover:bg-gold-500 hover:text-moss-900 transition">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function displayProducts(items) {
+            const grid = document.getElementById('product-grid');
+            if (items.length === 0) {
+                grid.innerHTML = `<p class="col-span-full text-center text-sage py-12">No se encontraron fragancias.</p>`;
+                return;
+            }
+            grid.innerHTML = items.map(displayProductCard).join('');
+        }
+
+        function filterCategory(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-moss-800', 'text-ivory-50');
+                btn.classList.add('bg-ivory-200', 'text-moss-900');
+            });
+            event.target.classList.remove('bg-ivory-200', 'text-moss-900');
+            event.target.classList.add('bg-moss-800', 'text-ivory-50');
+
+            if (category === 'all') {
+                displayProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category.toLowerCase() === category.toLowerCase());
+                displayProducts(filtered);
+            }
+        }
+
+        function searchProducts() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(query) || p.brand.toLowerCase().includes(query)
+            );
+            displayProducts(filtered);
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            updateCartUI();
+            toggleCart();
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const container = document.getElementById('cart-items');
+            const totalEl = document.getElementById('cart-total');
+            
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            badge.textContent = totalCount;
+
+            if (cart.length === 0) {
+                container.innerHTML = `<p class="text-center text-sage py-8">Tu bolsa está vacía.</p>`;
+                totalEl.textContent = '$0.00';
+                return;
+            }
+
+            container.innerHTML = cart.map(item => `
+                <div class="flex items-center justify-between bg-white p-3 rounded-lg border border-ivory-200">
+                    <div>
+                        <h4 class="font-serif font-bold text-sm text-moss-900">${item.name}</h4>
+                        <p class="text-xs text-sage">${item.brand} &bull; $${item.price.toFixed(2)}</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-xs font-semibold px-2">Cant: ${item.quantity}</span>
+                        <button onclick="removeFromCart('${item.id}')" class="text-red-500 hover:text-red-700 text-xs">Eliminar</button>
+                    </div>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            totalEl.textContent = `$${total.toFixed(2)}`;
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) return;
+            let message = "Hola METZ Perfumes, deseo realizar el siguiente pedido:\n\n";
+            cart.forEach(item => {
+                message += `- ${item.quantity}x ${item.brand} ${item.name} (${item.size}) - $${(item.price * item.quantity).toFixed(2)}\n`;
+            });
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += `\nTotal a pagar: $${total.toFixed(2)}`;
+            
+            // Reemplaza con tu número de teléfono de WhatsApp (código de país + número, ej: 505XXXXXXXX)
+            const phone = "50500000000"; 
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        loadProducts();
+    </script>
+</body>
+</html>
