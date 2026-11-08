@@ -31,6 +31,16 @@
   },
   {
     "id": "4",
+    "name": "La Vie Est Belle",
+    "brand": "Lancôme",
+    "size": "75ml",
+    "type": "Eau de Parfum",
+    "category": "mujer",
+    "price": 125.00,
+    "image": "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "5",
     "name": "Aventus Creed",
     "brand": "Creed",
     "size": "100ml",
@@ -40,13 +50,43 @@
     "image": "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&q=80&w=600"
   },
   {
-    "id": "5",
+    "id": "6",
     "name": "Baccarat Rouge 540",
     "brand": "Maison Francis Kurkdjian",
     "size": "70ml",
     "type": "Eau de Parfum",
     "category": "neutral",
     "price": 325.00,
-    "image": "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=600"
+    "image": "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "7",
+    "name": "Bleu de Chanel",
+    "brand": "Chanel",
+    "size": "100ml",
+    "type": "Eau de Parfum",
+    "category": "hombre",
+    "price": 160.00,
+    "image": "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "8",
+    "name": "Dior Sauvage",
+    "brand": "Dior",
+    "size": "100ml",
+    "type": "Eau de Parfum",
+    "category": "hombre",
+    "price": 155.00,
+    "image": "https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "9",
+    "name": "Lost Cherry",
+    "brand": "Tom Ford",
+    "size": "100ml",
+    "type": "Eau de Parfum",
+    "category": "mujer",
+    "price": 340.00,
+    "image": "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=600"
   }
 ]
